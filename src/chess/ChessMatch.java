@@ -1,7 +1,6 @@
 package chess;
 
 import boardgame.Board;
-import boardgame.BoardException;
 import boardgame.Piece;
 import boardgame.Position;
 import chess.pieces.King;
@@ -27,6 +26,11 @@ public class ChessMatch {
         return mat;
     }
 
+    public boolean[][] possibleMoves(ChessPosition sourcePosition){
+        Position position = sourcePosition.toPosition();
+        validateSourcePosition(position);
+        return board.piece(position).possibleMoves();
+    }
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();

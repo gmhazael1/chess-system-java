@@ -1,7 +1,5 @@
 package aplication;
 
-import boardgame.Board;
-import boardgame.Position;
 import chess.ChessException;
 import chess.ChessMatch;
 import chess.ChessPiece;
@@ -18,10 +16,17 @@ public class Program {
         while (true){
             try {
                 UI.clearScreen();
-                UI.printBoard(chessMatch.getPieces());
+                boolean[][] possibleMoves = new boolean[0][];
+                UI.printBoard(chessMatch.getPieces(), possibleMoves);
                 System.out.println();
                 System.out.print("Source: ");
                 ChessPosition source = UI.readChessPosition(sc);
+
+                possibleMoves = chessMatch.possibleMoves(source);
+                UI.clearScreen();
+                UI.printBoard(chessMatch.getPieces(), possibleMoves);
+
+                System.out.println();
                 System.out.print("Target: ");
                 ChessPosition target = UI.readChessPosition(sc);
 
